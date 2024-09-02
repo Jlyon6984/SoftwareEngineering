@@ -61,6 +61,42 @@ class Bird(Animal):
     
     def ReturnAge(self):
         return self.age
+    
+# KEITH YOUNG 9/2/24 1:15 PM
+# Child class - Owl
+
+class Owl(Animal):
+    def __init__(self, owl_name, color, age):
+        super().__init__(owl_name)
+        self.color = color
+        self.age = age
+        
+    def speak(self):
+        return "Hoot!"
+    
+    def __str__(self):
+        return f"Owl with color {self.color} named {self.name}"
+    
+    def ReturnAge(self):
+        return self.age
+    
+# KEITH YOUNG 9/2/24 1:28 PM
+# Child class - Cow
+class Cow(Animal):
+    def __init__(self, cow_name, color, age):
+        super().__init__(cow_name)
+        self.color = color
+        self.age = age
+        
+    def speak(self):
+        return "Moo!"
+    
+    def __str__(self):
+        return f"Cow with color {self.color} named {self.name}"
+    
+    def ReturnAge(self):
+        return self.age
+
         
     
 
@@ -84,6 +120,16 @@ my_bird = Bird("Tweety", "Canary", 1)
 print(my_bird)  # Output: Bird of species Canary named Tweety
 print(my_bird.speak())  # Output: Chirp!
 print(my_bird.ReturnAge())
+
+my_owl = Owl("Hooty", "Brown", 3)
+print(my_owl) # Output: Owl with color Brown named Hooty
+print(my_owl.speak()) # Output: Hoot!
+print(my_owl.ReturnAge())
+
+my_owl = Cow("Spot", "white", 3)
+print(my_owl) # Output: Cow with color white named Spot
+print(my_owl.speak()) # Output: Moo!
+print(my_owl.ReturnAge())
 
 
 # Unit tests
@@ -183,6 +229,55 @@ class TestBird(unittest.TestCase):
     def test_bird_age(self):
         """Test the age method of the Bird class."""
         self.assertEqual(self.bird.ReturnAge(), 1)
+        
+class TestOwl(unittest.TestCase):
+    
+    def setUp(self):
+        """Set up test cases."""
+        self.owl = Owl("Hooty", "Brown", 3)
+        
+    def test_owl_init(self):
+        """Test the initialization of the Owl class."""
+        self.assertEqual(self.owl.name, "Hooty")
+        self.assertEqual(self.owl.color, "Brown")
+        self.assertEqual(self.owl.age, 3)
+
+    def test_owl_speak(self):
+        """Test the speak method of the Owl class."""
+        self.assertEqual(self.owl.speak(), "Hoot!")
+
+    def test_owl_str(self):
+        """Test the string representation of the Owl class."""
+        self.assertEqual(str(self.owl), "Owl with color Brown named Hooty")
+        
+    def test_owl_age(self):
+        """Test the age method of the Owl class."""
+        self.assertEqual(self.owl.ReturnAge(), 3)
+        
+
+class TestCow(unittest.TestCase):
+    
+    def setUp(self):
+        """Set up test cases."""
+        self.cow = Cow("Spot", "White", 3)
+        
+    def test_cow_init(self):
+        """Test the initialization of the Owl class."""
+        self.assertEqual(self.cow.name, "Spot")
+        self.assertEqual(self.cow.color, "White")
+        self.assertEqual(self.cow.age, 3)
+
+    def test_cow_speak(self):
+        """Test the speak method of the Owl class."""
+        self.assertEqual(self.cow.speak(), "Moo!")
+
+    def test_cow_str(self):
+        """Test the string representation of the Owl class."""
+        self.assertEqual(str(self.cow), "Cow with color White named Spot")
+        
+    def test_cow_age(self):
+        """Test the age method of the Owl class."""
+        self.assertEqual(self.cow.ReturnAge(), 3)
 
 
 # Run the tests if this file is executed directly
