@@ -97,6 +97,27 @@ class Cow(Animal):
     def ReturnAge(self):
         return self.age
 
+#Wyatt Harris 9/6/24 12:16 PM
+#Child class - monkey
+    
+class Monkey(Animal):
+    def __init__(self, monkey_name, species, age):
+        super().__init__(monkey_name)
+        self.species = species
+        self.age = age
+    
+    def speak(self):
+        return "OOO OOO AAA AAA!"
+    
+    def __str__(self):
+        return f"Monkey of species {self.species} named {self.name}"
+    
+    def ReturnAge(self):
+        return self.age
+    
+    def collect_banana(self):
+        return f"{self.name} collects a banana"
+
         
     
 
@@ -130,6 +151,13 @@ my_owl = Cow("Spot", "white", 3)
 print(my_owl) # Output: Cow with color white named Spot
 print(my_owl.speak()) # Output: Moo!
 print(my_owl.ReturnAge())
+
+
+my_monkey = Monkey("George", "Tamarin", 5)
+print(my_monkey) #Output: Monkey of species Tamarin name George
+print(my_monkey.speak()) # Output: OOO OOO AAA AAA!
+print(my_monkey.ReturnAge()) # Output: 5
+print(my_monkey.collect_banana()) # Output : George collects a banana
 
 
 # Unit tests
@@ -278,6 +306,35 @@ class TestCow(unittest.TestCase):
     def test_cow_age(self):
         """Test the age method of the Owl class."""
         self.assertEqual(self.cow.ReturnAge(), 3)
+        
+class TestMonkey(unittest.TestCase):
+    
+    def setUp(self):
+        """Set up test cases"""
+        self.Monkey = Monkey("George","Tamarin",5)
+    
+    def test_monkey_init(self):
+        """Test the initialization of the Monkey class."""
+        self.assertEqual(self.Monkey.name, "George")
+        self.assertEqual(self.Monkey.species, "Tamarin")
+        self.assertEqual(self.Monkey.age, 5)
+
+    def test_monkey_speak(self):
+        """Test the speak method of the Monkey class."""
+        self.assertEqual(self.Monkey.speak(), "OOO OOO AAA AAA!")
+
+    def test_monkey_str(self):
+        """Test the string representation of the Monkey class."""
+        self.assertEqual(str(self.Monkey), "Monkey of species Tamarin named George")
+        
+    def test_monkey_age(self):
+        """Test the age method of the Monkey class."""
+        self.assertEqual(self.Monkey.ReturnAge(), 5)
+    
+    def test_monkey_collect_banana(self):
+        """Test the collect banana method of the MOnkey Class."""
+        self.assertEqual(self.Monkey.collect_banana(), "George collects a banana")
+        
 
 
 # Run the tests if this file is executed directly
